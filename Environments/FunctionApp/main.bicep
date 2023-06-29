@@ -22,7 +22,9 @@ param supportsHttpsTrafficOnly bool = true
 param runtime string = 'dotnet-isolated'
 
 @description('Tags to apply to environment resources')
-param tags object = {}
+param tags object = {
+  owner: 'ddfundev'
+}
 
 var linexFxVersions = {
   dotnet: 'DOTNET|6.0'
@@ -116,4 +118,24 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
     }
   }
   tags: tags
+}
+
+resource ftp_basicPublishingCredentialsPolicies 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2022-09-01' = {
+  name: 'ftp'
+  parent: functionApp
+  // workaround https://github.com/Azure/bicep/issues/4815
+  location: 'blahblahblah'
+  properties: {
+    allow: false
+  }
+}
+
+resource scm_basicPublishingCredentialsPolicies 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2022-09-01' = {
+  name: 'scm'
+  parent: functionApp
+  // workaround https://github.com/Azure/bicep/issues/4815
+  location: 'blahblahblah'
+  properties: {
+    allow: false
+  }
 }
