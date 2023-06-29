@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.15.31.15270",
-      "templateHash": "135257884104161714"
+      "version": "0.18.4.5664",
+      "templateHash": "16205808489997047573"
     }
   },
   "parameters": {
@@ -47,7 +47,9 @@
     },
     "tags": {
       "type": "object",
-      "defaultValue": {},
+      "defaultValue": {
+        "owner": "ddfundev"
+      },
       "metadata": {
         "description": "Tags to apply to environment resources"
       }
@@ -153,6 +155,30 @@
         "[resourceId('Microsoft.Insights/components', variables('resourceName'))]",
         "[resourceId('Microsoft.Web/serverfarms', variables('resourceName'))]",
         "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAcctName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+      "apiVersion": "2022-09-01",
+      "name": "[format('{0}/{1}', variables('resourceName'), 'ftp')]",
+      "location": "blahblahblah",
+      "properties": {
+        "allow": false
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('resourceName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+      "apiVersion": "2022-09-01",
+      "name": "[format('{0}/{1}', variables('resourceName'), 'scm')]",
+      "location": "blahblahblah",
+      "properties": {
+        "allow": false
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('resourceName'))]"
       ]
     }
   ]
