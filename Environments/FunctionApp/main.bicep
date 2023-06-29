@@ -23,7 +23,7 @@ param runtime string = 'dotnet-isolated'
 
 @description('Tags to apply to environment resources')
 param tags object = {
-  owner: 'ddfundev'
+  template: 'functionapp'
 }
 
 var linexFxVersions = {

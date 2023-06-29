@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.18.4.5664",
-      "templateHash": "16205808489997047573"
+      "templateHash": "15623121110634572150"
     }
   },
   "parameters": {
@@ -48,7 +48,7 @@
     "tags": {
       "type": "object",
       "defaultValue": {
-        "owner": "ddfundev"
+        "template": "functionapp"
       },
       "metadata": {
         "description": "Tags to apply to environment resources"
